@@ -5,7 +5,7 @@
 </p>
 
 [![Build Status](https://badgen.now.sh/circleci/github/ArkEcosystem/core-e2e)](https://circleci.com/gh/ArkEcosystem/core-e2e)
-[![License: MIT](https://badgen.now.sh/badge/license/MIT/green)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://badgen.now.sh/badge/license/MIT/green)](./LICENSE)
 
 ## Introduction
 

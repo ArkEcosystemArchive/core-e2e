@@ -1,0 +1,9 @@
+{
+  "minimumNetworkReach": 2,
+  "minimumVersion": ">=1.1.1",
+  "globalTimeout": 5000,
+  "coldStart": 5,
+  "whiteList": [],
+  "blackList": [],
+  "list": [ { "ip": "<nodeIpPlaceholder>", "port": 4000 } ]
+}

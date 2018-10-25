@@ -1,0 +1,80 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Install nvm
+          command: |
+            source ~/.bashrc
+            nvm install 10
+      - run:
+          name: Check nodejs version
+          command: |
+            source ~/.bashrc
+            nvm use 10
+            node --version
+      - run:
+          name: Docker swarm init
+          command: 'docker swarm init'
+      - restore_cache:
+          key: ark-e2e-{{ checksum "package.json" }}-1
+      - run:
+          name: Npm install
+          command: 'npm install'
+      - save_cache:
+          key: ark-e2e-{{ checksum "package.json" }}-1
+          paths:
+            -  ./node_modules
+      - run:
+          name: Generate files
+          command: |
+            source ~/.bashrc
+            nvm use 10
+            node --version
+            bin/e2e generate -n e2enet -c 5
+      - run:
+          name: Make scripts executable
+          command: 'sudo chmod +x dist/e2enet/docker*'
+      - run:
+          name: Docker init and start
+          command: 'cd dist/e2enet && ./docker-init.sh && ./docker-start.sh && cd ../..'
+      - run:
+          name: Run tests
+          command: |
+            source ~/.bashrc
+            nvm use 10
+            node --version
+            bin/e2e run-tests -n e2enet -s scenario1
+      - run:
+          name: Output results - node0
+          command: |
+            cat dist/e2enet/node0/output.log
+            cat dist/e2enet/node0/errors.log
+      - run:
+          name: Output results - node1
+          command: |
+            cat dist/e2enet/node1/output.log
+            cat dist/e2enet/node1/errors.log
+      - run:
+          name: Output results - node2
+          command: |
+            cat dist/e2enet/node2/output.log
+            cat dist/e2enet/node2/errors.log
+      - run:
+          name: Output results - node3
+          command: |
+            cat dist/e2enet/node3/output.log
+            cat dist/e2enet/node3/errors.log
+      - run:
+          name: Output results - node4
+          command: |
+            cat dist/e2enet/node4/output.log
+            cat dist/e2enet/node4/errors.log
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build

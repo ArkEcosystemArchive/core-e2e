@@ -53,6 +53,8 @@ jobs:
             source ~/.bashrc
             nvm use 10
             node --version
+            sudo nvm use 10
+            sudo node --version
             sudo bin/e2e run-tests -n e2enet -s scenario1
       - run:
           name: Output results - node0

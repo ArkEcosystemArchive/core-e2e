@@ -3,6 +3,7 @@
 module.exports = {
     network: 'e2enet',
     enabledTests: [
-        'doublespend1'
+        'doublespend1',
+        'pool-clear'
     ]
 }

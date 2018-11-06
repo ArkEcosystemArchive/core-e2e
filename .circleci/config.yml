@@ -46,7 +46,7 @@ jobs:
             source ~/.bashrc
             nvm use 10
             node --version
-            sudo -E bin/e2e run-tests -n e2enet -s scenario1
+            bin/e2e run-tests -n e2enet -s scenario1
       - run:
           name: Output results - node0
           command: |

@@ -33,7 +33,7 @@ module.exports = async (options) => {
     const transactions = response.data.data
     console.log(`[pool-clear] unconfirmed: ${JSON.stringify(transactions)}`)
 
-    const commandStopNode = `kill $(ps aux | grep '[n]etwork-start' |  awk '{print $2}')`
+    const commandStopNode = `kill $(ps aux --sort=start_time | grep e2enet | grep -v network-start | head -1 |  awk '{print $2}')`
     const { stdout, stderr } = await exec(commandStopNode)
     console.log(`[pool-clear] kill node process : ${JSON.stringify({stdout, stderr})}`)
 

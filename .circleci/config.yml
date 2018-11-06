@@ -41,12 +41,19 @@ jobs:
           name: Docker init and start
           command: 'cd dist/e2enet && ./docker-init.sh && ./docker-start.sh && cd ../..'
       - run:
+          name: Adjustments for sudo env variables
+          command: |
+            n=$(which node); \
+            n=${n%/bin/node}; \
+            chmod -R 755 $n/bin/*; \
+            sudo cp -r $n/{bin,lib,share} /usr/local
+      - run:
           name: Run tests
           command: |
             source ~/.bashrc
             nvm use 10
             node --version
-            bin/e2e run-tests -n e2enet -s scenario1
+            sudo bin/e2e run-tests -n e2enet -s scenario1
       - run:
           name: Output results - node0
           command: |

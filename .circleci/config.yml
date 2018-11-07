@@ -5,16 +5,16 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install nvm
+          name: Install n and update node version
           command: |
-            source ~/.bashrc
-            nvm install 10
+            sudo npm install -g n
+            n 10
+            sudo n 10
       - run:
           name: Check nodejs version
           command: |
-            source ~/.bashrc
-            nvm use 10
             node --version
+            sudo node --version
       - run:
           name: Docker swarm init
           command: 'docker swarm init'
@@ -29,11 +29,7 @@ jobs:
             -  ./node_modules
       - run:
           name: Generate files
-          command: |
-            source ~/.bashrc
-            nvm use 10
-            node --version
-            bin/e2e generate -n e2enet -c 5
+          command: bin/e2e generate -n e2enet -c 5
       - run:
           name: Make scripts executable
           command: 'sudo chmod +x dist/e2enet/docker*'
@@ -49,13 +45,7 @@ jobs:
             sudo cp -r $n/{bin,lib,share} /usr/local
       - run:
           name: Run tests
-          command: |
-            source ~/.bashrc
-            nvm use 10
-            node --version
-            sudo nvm use 10
-            sudo node --version
-            sudo bin/e2e run-tests -n e2enet -s scenario1
+          command: sudo bin/e2e run-tests -n e2enet -s scenario1
       - run:
           name: Output results - node0
           command: |

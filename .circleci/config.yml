@@ -26,6 +26,8 @@ jobs:
       - run:
           name: Check nodejs version
           command: |
+            source ~/.bashrc
+            nvm use 10
             node --version
             sudo node --version
       - run:
@@ -42,7 +44,10 @@ jobs:
             -  ./node_modules
       - run:
           name: Generate files
-          command: bin/e2e generate -n e2enet -c 5
+          command: |
+            source ~/.bashrc
+            nvm use 10
+            bin/e2e generate -n e2enet -c 5
       - run:
           name: Make scripts executable
           command: 'sudo chmod +x dist/e2enet/docker*'

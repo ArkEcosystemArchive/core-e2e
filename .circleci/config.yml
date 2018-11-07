@@ -5,6 +5,17 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Adjustments for sudo env variables
+          command: |
+            n=$(which node); \
+            n=${n%/bin/node}; \
+            chmod -R 755 $n/bin/*; \
+            sudo cp -r $n/{bin,lib,share} /usr/local
+            n=$(which npm); \
+            n=${n%/bin/npm}; \
+            chmod -R 755 $n/bin/*; \
+            sudo cp -r $n/{bin,lib,share} /usr/local
+      - run:
           name: Install n and update node version
           command: |
             sudo npm install -g n
@@ -36,13 +47,6 @@ jobs:
       - run:
           name: Docker init and start
           command: 'cd dist/e2enet && ./docker-init.sh && ./docker-start.sh && cd ../..'
-      - run:
-          name: Adjustments for sudo env variables
-          command: |
-            n=$(which node); \
-            n=${n%/bin/node}; \
-            chmod -R 755 $n/bin/*; \
-            sudo cp -r $n/{bin,lib,share} /usr/local
       - run:
           name: Run tests
           command: sudo bin/e2e run-tests -n e2enet -s scenario1

@@ -18,9 +18,10 @@ jobs:
       - run:
           name: Install n and update node version
           command: |
-            npm install -g n
-            n 10
+            sudo npm install -g n
             sudo n 10
+            nvm install 10
+            nvm use 10
       - run:
           name: Check nodejs version
           command: |

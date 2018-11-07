@@ -39,7 +39,7 @@ jobs:
             -  ./node_modules
       - run:
           name: Generate files
-          command: bin/e2e generate -n e2enet -c 5
+          command: sudo bin/e2e generate -n e2enet -c 5
       - run:
           name: Make scripts executable
           command: 'sudo chmod +x dist/e2enet/docker*'

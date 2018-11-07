@@ -10,7 +10,7 @@ const exec = util.promisify(require('child_process').exec)
  */
 module.exports = async (options) => {
   const commandReconnectNode = `docker network connect nodes $(docker ps --format "{{.Names}}" | grep node1_ark)`
-  const { stdoutReconnect: stdout, stderrReconnect: stderr } = await exec(commandReconnectNode)
+  const { stdout: stdoutReconnect, stderr: stderrReconnect } = await exec(commandReconnectNode)
   console.log(`[pool-clear] reconnect node : ${JSON.stringify({stdoutReconnect, stderrReconnect})}`)
 
   const commandLaunch = `docker ps --format "{{.Names}}" | grep node1_ark | xargs -I {} sh -c 'docker exec -d {} bash ark.sh'`

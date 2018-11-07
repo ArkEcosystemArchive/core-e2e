@@ -31,7 +31,7 @@ module.exports = async (options) => {
     })
 
     const commandDisconnectNode = `docker disconnect nodes $(docker ps --format "{{.Names}}" | grep node1_ark)`
-    const { stdoutDisconnect: stdout, stderrDisconnect: stderr } = await exec(commandDisconnectNode)
+    const { stdout: stdoutDisconnect, stderr: stderrDisconnect } = await exec(commandDisconnectNode)
     console.log(`[pool-clear] disconnect node : ${JSON.stringify({stdoutDisconnect, stderrDisconnect})}`)
 
     // second transaction which will not be broadcasted and should be kept in the node pool

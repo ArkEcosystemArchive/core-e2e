@@ -47,7 +47,7 @@ module.exports = async (options) => {
       transactions: [transaction2]
     })
 
-    const response = await testUtils.request('GET', 'transactions/unconfirmed', { port: 3001 })
+    const response = await testUtils.request('GET', 'transactions/unconfirmed', { port: 4301 })
     const transactions = response.data.data
     console.log(`[pool-clear] unconfirmed: ${JSON.stringify(transactions)}`)
 

@@ -5,7 +5,7 @@ const utils = require('./utils')
 
 describe('Check confirmed and unconfirmed transactions', () => {
   it('should have no unconfirmed transaction', async () => {
-    const response = await testUtils.request('GET', 'transactions/unconfirmed', { port: 3001 })
+    const response = await testUtils.request('GET', 'transactions/unconfirmed', { port: 4301 })
     testUtils.expectSuccessful(response)
     const transactions = response.data.data
     

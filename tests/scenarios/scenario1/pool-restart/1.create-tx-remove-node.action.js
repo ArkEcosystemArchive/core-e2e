@@ -30,7 +30,7 @@ module.exports = async (options) => {
       transactions: [transaction]
     })
 
-    const commandDisconnectNode = `docker disconnect nodes $(docker ps --format "{{.Names}}" | grep node1_ark)`
+    const commandDisconnectNode = `docker network disconnect nodes $(docker ps --format "{{.Names}}" | grep node1_ark)`
     const { stdout: stdoutDisconnect, stderr: stderrDisconnect } = await exec(commandDisconnectNode)
     console.log(`[pool-clear] disconnect node : ${JSON.stringify({stdoutDisconnect, stderrDisconnect})}`)
 

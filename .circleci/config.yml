@@ -19,7 +19,6 @@ jobs:
           name: Install n and update node version
           command: |
             sudo npm install -g n
-            n 10
             sudo n 10
       - run:
           name: Check nodejs version

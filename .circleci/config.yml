@@ -20,6 +20,7 @@ jobs:
           command: |
             sudo npm install -g n
             sudo n 10
+            source ~/.bashrc
             nvm install 10
             nvm use 10
       - run:

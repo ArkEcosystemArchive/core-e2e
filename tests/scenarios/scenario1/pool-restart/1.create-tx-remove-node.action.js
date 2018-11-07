@@ -35,7 +35,7 @@ module.exports = async (options) => {
     console.log(`[pool-clear] disconnect node : ${JSON.stringify({stdoutDisconnect, stderrDisconnect})}`)
 
     // second transaction which will not be broadcasted and should be kept in the node pool
-    let transaction = transactionBuilder
+    let transaction2 = transactionBuilder
       .transfer()
       .amount(300 * Math.pow(10, 8))
       .recipientId(utils.randomRecipient2.address)
@@ -44,7 +44,7 @@ module.exports = async (options) => {
       .getStruct()
 
     await axios.post('http://127.0.0.1:4301/api/v2/transactions', {
-      transactions: [transaction]
+      transactions: [transaction2]
     })
 
     const response = await testUtils.request('GET', 'transactions/unconfirmed', { port: 3001 })

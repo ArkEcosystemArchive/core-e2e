@@ -29,11 +29,3 @@ else
   echo "[Network configuration] Creating network nodes"
   docker network create -d overlay nodes --scope=swarm
 fi
-networkExists="$(docker network ls | grep outsideworld | wc -l)"
-if [ $networkExists = 1 ]
-then
-  echo "[Network configuration] Network outsideworld already exists !"
-else
-  echo "[Network configuration] Creating network outsideworld"
-  docker network create -d overlay outsideworld --scope=swarm
-fi

@@ -32,9 +32,6 @@ services:
       - |
           /entrypoint.sh
     networks:
-      outsideworld:
-        aliases:
-          - {{nodeAlias}}
       node:
         aliases:
           - {{nodeAlias}}
@@ -51,9 +48,6 @@ volumes:
       o: bind
 
 networks:
-  outsideworld:
-    external:
-      name: outsideworld
   node:
     external:
       name: nodes

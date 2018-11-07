@@ -18,7 +18,8 @@ jobs:
       - run:
           name: Install n and update node version
           command: |
-            sudo npm install -g n
+            npm install -g n
+            n 10
             sudo n 10
       - run:
           name: Check nodejs version
@@ -39,7 +40,7 @@ jobs:
             -  ./node_modules
       - run:
           name: Generate files
-          command: sudo bin/e2e generate -n e2enet -c 5
+          command: bin/e2e generate -n e2enet -c 5
       - run:
           name: Make scripts executable
           command: 'sudo chmod +x dist/e2enet/docker*'

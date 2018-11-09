@@ -26,9 +26,7 @@ module.exports = async (options) => {
       .sign(utils.senderWallet.passphrase)
       .getStruct()
 
-    await axios.post('http://127.0.0.1:4301/api/v2/transactions', {
-      transactions: [transaction]
-    })
+    await testUtils.POST('transactions', { transactions: [transaction] }, 4301)
 
     const commandDisconnectNode = `docker network disconnect nodes $(docker ps --format "{{.Names}}" | grep node1_ark)`
     const { stdout: stdoutDisconnect, stderr: stderrDisconnect } = await exec(commandDisconnectNode)
@@ -43,11 +41,9 @@ module.exports = async (options) => {
       .sign(utils.senderWallet.passphrase)
       .getStruct()
 
-    await axios.post('http://127.0.0.1:4301/api/v2/transactions', {
-      transactions: [transaction2]
-    })
+    await testUtils.POST('transactions', { transactions: [transaction2] }, 4301)
 
-    const response = await testUtils.request('GET', 'transactions/unconfirmed', { port: 4301 })
+    const response = await testUtils.GET('transactions/unconfirmed', {}, 4301)
     const transactions = response.data.data
     console.log(`[pool-clear] unconfirmed: ${JSON.stringify(transactions)}`)
 

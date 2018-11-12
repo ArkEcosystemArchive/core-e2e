@@ -57,7 +57,9 @@ jobs:
           command: 'cd dist/e2enet && ./docker-init.sh && ./docker-start.sh && cd ../..'
       - run:
           name: Run tests
-          command: sudo bin/e2e run-tests -n e2enet -s scenario1
+          command: |
+            sudo n 10
+            sudo bin/e2e run-tests -n e2enet -s scenario1
       - run:
           name: Output results - node0
           command: |

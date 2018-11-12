@@ -1,4 +1,4 @@
-for rawdir in */;
+for rawdir in node*/;
   do
   nodeDir="$(echo $rawdir | sed -e 's;/;;g')";
   echo "[docker-compose build] Building ${nodeDir} ...";
@@ -6,7 +6,7 @@ for rawdir in */;
   docker-compose build
   cd ../../..
 done
-for rawdir in */;
+for rawdir in node*/;
   do
   nodeDir="$(echo $rawdir | sed -e 's;/;;g')";
   echo "[docker-compose stack] Deploying ${nodeDir} ...";

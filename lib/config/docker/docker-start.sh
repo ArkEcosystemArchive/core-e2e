@@ -14,3 +14,7 @@ for rawdir in */;
   docker stack deploy -c docker-compose-stack.yml ${nodeDir}
   cd ../../..
 done
+# deploying nginx server (for proxying requests to the nodes)
+cd nginx
+docker stack deploy -c docker-compose.yml nginx
+cd ..

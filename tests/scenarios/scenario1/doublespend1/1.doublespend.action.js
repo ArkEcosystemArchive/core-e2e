@@ -3,6 +3,7 @@
 const axios = require('axios')
 const { client, transactionBuilder } = require('@arkecosystem/crypto')
 const utils = require('./utils')
+const testUtils = require('../../../../lib/utils/test-utils')
 
 /**
  * Attempt to double spend
@@ -29,7 +30,7 @@ module.exports = async (options) => {
       .sign(utils.doubleSpendSender.passphrase)
       .getStruct()
 
-    await axios.post('http://127.0.0.1:4300/api/v2/transactions', {
+    await testUtils.POST('transactions', {
       transactions: [transaction1, transaction2]
     })
 }

@@ -22,7 +22,7 @@ module.exports = async (options) => {
       .transfer()
       .amount(300 * Math.pow(10, 8))
       .recipientId(utils.randomRecipient.address)
-      .vendorField('transaction to add to pool before stopping node')
+      .vendorField('transaction to add to pool before disconnecting node')
       .sign(utils.senderWallet.passphrase)
       .getStruct()
 
@@ -49,7 +49,7 @@ module.exports = async (options) => {
 
     console.log(`Current directory: ${process.cwd()}`); //TODO remove
 
-    const commandStopNode = `kill -2 $(cat ../dist/e2enet/node1/pid.log)` // sending SIGINT for graceful shutdown
+    const commandStopNode = `kill -2 $(cat ./dist/e2enet/node1/pid.log)` // sending SIGINT for graceful shutdown
     const { stdout, stderr } = await exec(commandStopNode)
     console.log(`[pool-clear] kill node process : ${JSON.stringify({stdout, stderr})}`)
 

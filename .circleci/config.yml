@@ -60,21 +60,25 @@ jobs:
           command: sudo bin/e2e run-tests -n e2enet -s scenario1
       - run:
           name: Output results - node0
+          when: always
           command: |
             cat dist/e2enet/node0/output.log
             cat dist/e2enet/node0/errors.log
       - run:
           name: Output results - node1
+          when: always
           command: |
             cat dist/e2enet/node1/output.log
             cat dist/e2enet/node1/errors.log
       - run:
           name: Output results - node2
+          when: always
           command: |
             cat dist/e2enet/node2/output.log
             cat dist/e2enet/node2/errors.log
       - run:
           name: Output results - node3
+          when: always
           command: |
             cat dist/e2enet/node3/output.log
             cat dist/e2enet/node3/errors.log

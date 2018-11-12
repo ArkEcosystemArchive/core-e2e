@@ -5,7 +5,7 @@ const utils = require('./utils')
 
 describe('Check confirmed and unconfirmed transactions', () => {
   it('should have no unconfirmed transaction', async () => {
-    const response = await testUtils.GET('transactions/unconfirmed', {}, 4301)
+    const response = await testUtils.GET('transactions/unconfirmed', {}, 1)
     testUtils.expectSuccessful(response)
     const transactions = response.data.data
     
@@ -13,7 +13,7 @@ describe('Check confirmed and unconfirmed transactions', () => {
   })
 
   it('should have our 1st and 2nd transaction forged', async () => {
-    const response = await testUtils.request('GET', 'transactions')
+    const response = await testUtils.GET('transactions')
     testUtils.expectSuccessful(response)
     const transactions = response.data.data
 

@@ -5,7 +5,7 @@ const utils = require('./utils')
 
 describe('Check forged transactions', () => {
   it('should have our first transaction forged but not our 2nd one', async () => {
-    const response = await testUtils.request('GET', 'transactions')
+    const response = await testUtils.GET('transactions')
     testUtils.expectSuccessful(response)
     const transactions = response.data.data
 

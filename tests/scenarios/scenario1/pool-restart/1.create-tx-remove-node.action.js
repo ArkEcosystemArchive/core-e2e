@@ -26,7 +26,7 @@ module.exports = async (options) => {
       .sign(utils.senderWallet.passphrase)
       .getStruct()
 
-    await testUtils.POST('transactions', { transactions: [transaction] }, 4301)
+    await testUtils.POST('transactions', { transactions: [transaction] }, 1)
 
     const commandDisconnectNode = `docker network disconnect nodes $(docker ps --format "{{.Names}}" | grep node1_ark)`
     const { stdout: stdoutDisconnect, stderr: stderrDisconnect } = await exec(commandDisconnectNode)
@@ -41,9 +41,9 @@ module.exports = async (options) => {
       .sign(utils.senderWallet.passphrase)
       .getStruct()
 
-    await testUtils.POST('transactions', { transactions: [transaction2] }, 4301)
+    await testUtils.POST('transactions', { transactions: [transaction2] }, 1)
 
-    const response = await testUtils.GET('transactions/unconfirmed', {}, 4301)
+    const response = await testUtils.GET('transactions/unconfirmed', {}, 1)
     const transactions = response.data.data
     console.log(`[pool-clear] unconfirmed: ${JSON.stringify(transactions)}`)
 

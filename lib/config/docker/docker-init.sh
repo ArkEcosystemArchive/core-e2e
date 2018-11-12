@@ -1,4 +1,4 @@
-for rawdir in */;
+for rawdir in node*/;
   do
   nodeDir="$(echo $rawdir | sed -e 's;/;;g')";
   p2pPort="$(expr $(echo "$(echo "${nodeDir}" | sed 's/[^0-9]*//g') + 4000"))"
@@ -15,13 +15,13 @@ for rawdir in */;
 done
 for nodeNumber in {0..9}
   do
-  networkExists="$(docker network ls | grep ${nodeNumber}backend | wc -l)"
+  networkExists="$(docker network ls | grep node${nodeNumber}backend | wc -l)"
   if [ $networkExists = 1 ]
   then
-    echo "[Network configuration] Network ${nodeNumber}backend already exists !"
+    echo "[Network configuration] Network node${nodeNumber}backend already exists !"
   else
-    echo "[Network configuration] Creating network ${nodeNumber}backend"
-    docker network create -d overlay ${nodeNumber}backend --scope=swarm
+    echo "[Network configuration] Creating network node${nodeNumber}backend"
+    docker network create -d overlay node${nodeNumber}backend --scope=swarm
   fi
 done
 networkExists="$(docker network ls | grep nodes | wc -l)"

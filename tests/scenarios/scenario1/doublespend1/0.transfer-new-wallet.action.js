@@ -4,6 +4,7 @@ const axios = require('axios')
 const { client, transactionBuilder } = require('@arkecosystem/crypto')
 const utils = require('./utils')
 const networkUtils = require('../../../networks/e2enet/utils')
+const testUtils = require('../../../../lib/utils/test-utils')
 
 /**
  * Creates a transaction to a new wallet
@@ -22,7 +23,7 @@ module.exports = async (options) => {
       .sign(networkUtils.genesisWallet.passphrase)
       .getStruct()
 
-    await axios.post('http://127.0.0.1:4300/api/v2/transactions', {
+    await testUtils.POST('transactions', {
       transactions: [transaction1]
     })
 }

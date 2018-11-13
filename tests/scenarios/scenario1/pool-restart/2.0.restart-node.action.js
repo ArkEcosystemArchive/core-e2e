@@ -19,7 +19,7 @@ module.exports = async (options) => {
 
   const commandDebug = `docker inspect $(docker ps --format "{{.Names}}" | grep node1_ark)`
   const { stdout: stdoutDebug, stderr: stderrDebug } = await exec(commandDebug)
-  console.log(`[pool-clear] debug : ${JSON.stringify({stdoutDebug, stderrDebug})}`)
+  console.log(`[pool-clear] debug : ${stdoutDebug}`)
 
   const commandLaunch = `docker ps --format "{{.Names}}" | grep node1_ark | xargs -I {} sh -c 'docker exec -d {} bash ark.sh'`
   console.log(`[pool-clear] Restarting node1`)

@@ -32,6 +32,10 @@ module.exports = async (options) => {
     const { stdout: stdoutDisconnect, stderr: stderrDisconnect } = await exec(commandDisconnectNode)
     console.log(`[pool-clear] disconnect node : ${JSON.stringify({stdoutDisconnect, stderrDisconnect})}`)
 
+    const commandDebug = `docker inspect $(docker ps --format "{{.Names}}" | grep node1_ark)`
+    const { stdout: stdoutDebug, stderr: stderrDebug } = await exec(commandDebug)
+    console.log(`[pool-clear] debug : ${stdoutDebug}`)
+
     // second transaction which will not be broadcasted and should be kept in the node pool
     let transaction2 = transactionBuilder
       .transfer()

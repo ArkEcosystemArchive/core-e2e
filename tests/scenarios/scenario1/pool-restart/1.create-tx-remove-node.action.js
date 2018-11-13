@@ -47,14 +47,12 @@ module.exports = async (options) => {
     const transactions = response.data.data
     console.log(`[pool-clear] unconfirmed: ${JSON.stringify(transactions)}`)
 
-    console.log(`Current directory: ${process.cwd()}`); //TODO remove
-
     const debug = `ps aux | grep ark` // TODO remove
     const { stdout: debugOut } = await exec(debug)
-    console.log(`[pool-clear] ${debug} result : ${JSON.stringify({debugOut})}`)
+    console.log(`[pool-clear] ${debug} result : ${debugOut}`)
 
-    const commandStopNode = `kill -2 $(cat ./dist/e2enet/node1/pid.log)` // sending SIGINT for graceful shutdown
+    const commandStopNode = `docker ps --format "{{.Names}}" | grep node1_ark | xargs -I {} sh -c 'docker exec -d {} bash killpid.sh'` // sending SIGINT for graceful shutdown
     const { stdout, stderr } = await exec(commandStopNode)
-    console.log(`[pool-clear] kill node process : ${JSON.stringify({stdout, stderr})}`)
+    console.log(`[pool-clear] killed node1 process`)
 
 }

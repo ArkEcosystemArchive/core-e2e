@@ -17,6 +17,10 @@ module.exports = async (options) => {
   const { stdout: stdoutReconnect, stderr: stderrReconnect } = await exec(commandReconnectNode)
   console.log(`[pool-clear] reconnect node : ${JSON.stringify({stdoutReconnect, stderrReconnect})}`)
 
+  const commandDebug = `docker inspect $(docker ps --format "{{.Names}}" | grep node1_ark)`
+  const { stdout: stdoutDebug, stderr: stderrDebug } = await exec(commandDebug)
+  console.log(`[pool-clear] debug : ${JSON.stringify({stdoutDebug, stderrDebug})}`)
+
   const commandLaunch = `docker ps --format "{{.Names}}" | grep node1_ark | xargs -I {} sh -c 'docker exec -d {} bash ark.sh'`
   console.log(`[pool-clear] Restarting node1`)
   const { stdout, stderr } = await exec(commandLaunch)

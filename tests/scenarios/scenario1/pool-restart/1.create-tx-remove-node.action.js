@@ -49,11 +49,11 @@ module.exports = async (options) => {
 
     console.log(`Current directory: ${process.cwd()}`); //TODO remove
 
-    const debug = `cat ./dist/e2enet/node1/pid.log` // TODO remove
+    const debug = `ps aux | grep ark` // TODO remove
     const { stdout: debugOut } = await exec(debug)
-    console.log(`[pool-clear] cat ./dist/e2enet/node1/pid.log result : ${JSON.stringify({debugOut})}`)
+    console.log(`[pool-clear] ${debug} result : ${JSON.stringify({debugOut})}`)
 
-    const commandStopNode = `sudo kill -2 $(cat ./dist/e2enet/node1/pid.log)` // sending SIGINT for graceful shutdown
+    const commandStopNode = `kill -2 $(cat ./dist/e2enet/node1/pid.log)` // sending SIGINT for graceful shutdown
     const { stdout, stderr } = await exec(commandStopNode)
     console.log(`[pool-clear] kill node process : ${JSON.stringify({stdout, stderr})}`)
 

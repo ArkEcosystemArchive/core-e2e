@@ -18,7 +18,7 @@ module.exports = async (options) => {
   console.log(`[pool-clear] pwd : ${JSON.stringify({stdoutpwd, stderrpwd})}`)
 
 
-  const commandReconnectNode = `docker network connect nodes $(docker ps --format "{{.Names}}" | grep node1_ark) --alias node1`
+  const commandReconnectNode = `docker network connect nodes $(docker ps --format "{{.Names}}" | grep node1_ark) --alias node1 --ip $(cat dist/e2enet/node1/ip.log)`
   const { stdout: stdoutReconnect, stderr: stderrReconnect } = await exec(commandReconnectNode)
   console.log(`[pool-clear] reconnect node : ${JSON.stringify({stdoutReconnect, stderrReconnect})}`)
 

@@ -13,18 +13,10 @@ module.exports = async (options) => {
   const { stdout: debug2Out } = await exec(debug2)
   console.log(`[pool-clear] ${debug2} result : ${debug2Out}`)
 
-  const commandPwd = `pwd`
-  const { stdout: stdoutpwd, stderr: stderrpwd } = await exec(commandPwd)
-  console.log(`[pool-clear] pwd : ${JSON.stringify({stdoutpwd, stderrpwd})}`)
-
 
   const commandReconnectNode = `docker network connect nodes $(docker ps --format "{{.Names}}" | grep node1_ark) --alias node1 --ip $(cat dist/e2enet/node1/ip.log)`
   const { stdout: stdoutReconnect, stderr: stderrReconnect } = await exec(commandReconnectNode)
   console.log(`[pool-clear] reconnect node : ${JSON.stringify({stdoutReconnect, stderrReconnect})}`)
-
-  const commandDebug = `docker inspect $(docker ps --format "{{.Names}}" | grep node1_ark)`
-  const { stdout: stdoutDebug, stderr: stderrDebug } = await exec(commandDebug)
-  console.log(`[pool-clear] debug : ${stdoutDebug}`)
 
   const commandLaunch = `docker ps --format "{{.Names}}" | grep node1_ark | xargs -I {} sh -c 'docker exec -d {} bash ark.sh'`
   console.log(`[pool-clear] Restarting node1`)

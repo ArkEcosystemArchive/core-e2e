@@ -51,10 +51,6 @@ module.exports = async (options) => {
     const transactions = response.data.data
     console.log(`[pool-clear] unconfirmed: ${JSON.stringify(transactions)}`)
 
-    const debug = `ps aux | grep ark` // TODO remove
-    const { stdout: debugOut } = await exec(debug)
-    console.log(`[pool-clear] ${debug} result : ${debugOut}`)
-
     const commandStopNode = `docker ps --format "{{.Names}}" | grep node1_ark | xargs -I {} sh -c 'docker exec -d {} bash killpid.sh'` // sending SIGINT for graceful shutdown
     const { stdout, stderr } = await exec(commandStopNode)
     console.log(`[pool-clear] killed node1 process`)

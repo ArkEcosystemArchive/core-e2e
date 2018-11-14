@@ -28,14 +28,12 @@ describe('Check forged transactions', () => {
 
     async function retryUnconfirmedAPI(retryCount) {
       if (retryCount < 1) { return null }
-      try {
-        const response = await testUtils.GET('transactions/unconfirmed', {}, 1)
-        return response
-      }
-      catch (e) {
-        await delay(1000)
-        return await retryUnconfirmedAPI(--retryCount)
-      }
+      
+      const response = await testUtils.GET('transactions/unconfirmed', {}, 1)
+      if (response) { return response }
+      
+      await delay(1000)
+      return await retryUnconfirmedAPI(--retryCount)
     }
   })
 })

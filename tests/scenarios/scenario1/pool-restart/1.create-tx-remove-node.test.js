@@ -8,12 +8,8 @@ const testUtils = require('../../../../lib/utils/test-utils')
 const util = require('util')
 const exec = util.promisify(require('child_process').exec)
 
-/**
- * Create a transaction to be added to the pool and shut down the node
- * @param  {Object} options = { }
- * @return {void}
- */
-module.exports = async (options) => {
+describe('Create transactions to be added to the pool, check unconfirmed transactions and shut down the node', () => {
+  it('should have 2 unconfirmed transactions in the pool before shut down', async () => {
     const config = require('../../../networks/e2enet/e2enet.json')
     client.setConfig(config)
 
@@ -32,10 +28,6 @@ module.exports = async (options) => {
     const { stdout: stdoutDisconnect, stderr: stderrDisconnect } = await exec(commandDisconnectNode)
     console.log(`[pool-clear] disconnect node : ${JSON.stringify({stdoutDisconnect, stderrDisconnect})}`)
 
-    const commandDebug = `docker inspect $(docker ps --format "{{.Names}}" | grep node1_ark)`
-    const { stdout: stdoutDebug, stderr: stderrDebug } = await exec(commandDebug)
-    console.log(`[pool-clear] debug : ${stdoutDebug}`)
-
     // second transaction which will not be broadcasted and should be kept in the node pool
     let transaction2 = transactionBuilder
       .transfer()
@@ -49,10 +41,13 @@ module.exports = async (options) => {
 
     const response = await testUtils.GET('transactions/unconfirmed', {}, 1)
     const transactions = response.data.data
-    console.log(`[pool-clear] unconfirmed: ${JSON.stringify(transactions)}`)
+    expect(transactions.length).toBe(2)
+    expect(transactions.find(tx => tx.id === transaction.id)).toBeDefined()
+    expect(transactions.find(tx => tx.id === transaction2.id)).toBeDefined()
 
     const commandStopNode = `docker ps --format "{{.Names}}" | grep node1_ark | xargs -I {} sh -c 'docker exec -d {} bash killpid.sh'` // sending SIGINT for graceful shutdown
     const { stdout, stderr } = await exec(commandStopNode)
     console.log(`[pool-clear] killed node1 process`)
+  })
 
-}
+})

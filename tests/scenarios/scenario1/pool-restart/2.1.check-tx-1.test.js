@@ -18,7 +18,7 @@ describe('Check forged transactions', () => {
   })
 
   it('should have the 2nd transaction still unconfirmed on node1 restart', async () => {
-    const response = await retryUnconfirmedAPI()
+    const response = await retryUnconfirmedAPI(10)
     
     testUtils.expectSuccessful(response)
     const transactions = response.data.data

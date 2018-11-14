@@ -1,5 +1,6 @@
 'use strict'
 
+const delay = require("delay")
 const testUtils = require('../../../../lib/utils/test-utils')
 const utils = require('./utils')
 
@@ -14,5 +15,27 @@ describe('Check forged transactions', () => {
     
     expect(txToRandomRecipient.length).toBe(1) // 1st transaction was forged
     expect(txToRandomRecipient2.length).toBe(0) // 2nd transaction was not forged
+  })
+
+  it('should have the 2nd transaction still unconfirmed on node1 restart', async () => {
+    const response = await retryUnconfirmedAPI()
+    
+    testUtils.expectSuccessful(response)
+    const transactions = response.data.data
+
+    expect(transactions.length).toBe(1)
+    expect(transactions[0].recipient).toBe(utils.randomRecipient2.address)
+
+    async function retryUnconfirmedAPI(retryCount) {
+      if (retryCount < 1) { return null }
+      try {
+        const response = await testUtils.GET('transactions/unconfirmed', {}, 1)
+        return response
+      }
+      catch (e) {
+        await delay(1000)
+        return await retryUnconfirmedAPI(--retryCount)
+      }
+    }
   })
 })

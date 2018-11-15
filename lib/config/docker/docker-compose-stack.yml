@@ -32,10 +32,10 @@ services:
       - |
           /entrypoint.sh
     networks:
-      node:
+      backend:
         aliases:
           - {{nodeAlias}}
-      backend:
+      node:
         aliases:
           - {{nodeAlias}}
 
@@ -48,9 +48,9 @@ volumes:
       o: bind
 
 networks:
-  node:
-    external:
-      name: nodes
   backend:
     external:
       name: {{nodeBackend}}
+  node:
+    external:
+      name: nodes

@@ -33,7 +33,7 @@ describe('Check forged transactions', () => {
       if (response) { return response }
       
       await delay(1000)
-      return await retryUnconfirmedAPI(--retryCount)
+      return retryUnconfirmedAPI(--retryCount)
     }
   })
 })

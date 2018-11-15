@@ -1,6 +1,5 @@
 'use strict'
 
-const axios = require('axios')
 const { client, transactionBuilder } = require('@arkecosystem/crypto')
 const utils = require('./utils')
 const testUtils = require('../../../../lib/utils/test-utils')
@@ -32,10 +31,6 @@ module.exports = async (options) => {
     const { stdout: stdoutDisconnect, stderr: stderrDisconnect } = await exec(commandDisconnectNode)
     console.log(`[pool-clear] disconnect node : ${JSON.stringify({stdoutDisconnect, stderrDisconnect})}`)
 
-    const commandDebug = `docker inspect $(docker ps --format "{{.Names}}" | grep node1_ark)`
-    const { stdout: stdoutDebug, stderr: stderrDebug } = await exec(commandDebug)
-    console.log(`[pool-clear] debug : ${stdoutDebug}`)
-
     // second transaction which will not be broadcasted and should be kept in the node pool
     let transaction2 = transactionBuilder
       .transfer()
@@ -46,13 +41,4 @@ module.exports = async (options) => {
       .getStruct()
 
     await testUtils.POST('transactions', { transactions: [transaction2] }, 1)
-
-    const response = await testUtils.GET('transactions/unconfirmed', {}, 1)
-    const transactions = response.data.data
-    console.log(`[pool-clear] unconfirmed: ${JSON.stringify(transactions)}`)
-
-    const commandStopNode = `docker ps --format "{{.Names}}" | grep node1_ark | xargs -I {} sh -c 'docker exec -d {} bash killpid.sh'` // sending SIGINT for graceful shutdown
-    const { stdout, stderr } = await exec(commandStopNode)
-    console.log(`[pool-clear] killed node1 process`)
-
 }

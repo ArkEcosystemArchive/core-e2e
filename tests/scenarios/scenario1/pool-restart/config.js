@@ -2,7 +2,7 @@
 
 /*
 Test summary :
-We want to test how the pool handles new (unconfirmed) transactions coming in, and how it updates it removing forged transactions.
+We want to test that the pool removes transactions that were forged by the network while it was shut down.
 
 Workflow :
 - step 0 : we just pick from genesis wallet what we need for our test, sending it to a new wallet

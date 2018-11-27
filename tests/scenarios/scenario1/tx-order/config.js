@@ -17,11 +17,11 @@ Workflow :
 module.exports = {
     events: {
         newBlock: {
-            /*6: [ '0.transfer-new-wallet.action' ],
+            6: [ '0.transfer-new-wallet.action' ],
             8: [ '1.create-transactions.action' ],
             10: [ '2.check-unconfirmed.test' ],
             12: [ '3.stop-node.action' ],
-            14: [ '4.restart-node.action'],*/
+            14: [ '4.restart-node.action'],
             18: [ '5.check-forged.test' ]
         }
     }

@@ -23,7 +23,7 @@ module.exports = async (options) => {
     client.setConfig(config)
 
     // A => B
-    let transaction = transactionBuilder
+    let transaction1 = transactionBuilder
       .transfer()
       .amount(300 * Math.pow(10, 8))
       .recipientId(utils.b.address)
@@ -31,8 +31,6 @@ module.exports = async (options) => {
       .fee(0.1 * Math.pow(10, 8))
       .sign(utils.a.passphrase)
       .getStruct()
-
-    await testUtils.POST('transactions', { transactions: [transaction] }, 1) // only to node 1
 
     // B => C
     let transaction2 = transactionBuilder
@@ -44,6 +42,6 @@ module.exports = async (options) => {
       .sign(utils.b.passphrase)
       .getStruct()
 
-    await testUtils.POST('transactions', { transactions: [transaction2] }, 1) // to node 1
-    await testUtils.POST('transactions', { transactions: [transaction2] }) // and other nodes
+    await testUtils.POST('transactions', { transactions: [transaction1, transaction2] }, 1) // to node 1
+    await testUtils.POST('transactions', { transactions: [transaction2] }) // just transaction2 to other nodes
 }

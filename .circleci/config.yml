@@ -66,6 +66,7 @@ jobs:
           name: Run tests
           command: sudo bin/e2e run-tests -n e2enet -s scenario1
       - save_cache:
+          when: always
           key: 'core-e2e-{{ checksum "checksum.txt" }}-1'
           paths:
             - ./dist/e2enet/node0/packages/core/node_modules

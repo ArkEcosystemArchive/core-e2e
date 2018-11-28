@@ -28,6 +28,7 @@ module.exports = async (options) => {
       .amount(300 * Math.pow(10, 8))
       .recipientId(utils.b.address)
       .vendorField('transfer A => B')
+      .fee(0.1 * Math.pow(10, 8))
       .sign(utils.a.passphrase)
       .getStruct()
 

@@ -19,6 +19,7 @@ module.exports = async (options) => {
       .amount(1000 * Math.pow(10, 8))
       .recipientId(utils.a.address)
       .vendorField('send coins to wallet A')
+      .fee(0.1 * Math.pow(10, 8))
       .sign(networkUtils.genesisWallet.passphrase)
       .getStruct()
 

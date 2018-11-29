@@ -22,6 +22,7 @@ module.exports = async (options) => {
       .amount(300 * Math.pow(10, 8))
       .recipientId(utils.randomRecipient.address)
       .vendorField('transaction to add to pool before disconnecting node')
+      .fee(0.1 * Math.pow(10, 8))
       .sign(utils.senderWallet.passphrase)
       .getStruct()
 
@@ -37,6 +38,7 @@ module.exports = async (options) => {
       .amount(300 * Math.pow(10, 8))
       .recipientId(utils.randomRecipient2.address)
       .vendorField('transaction to add to pool before stopping node')
+      .fee(0.1 * Math.pow(10, 8))
       .sign(utils.senderWallet.passphrase)
       .getStruct()
 

@@ -71,6 +71,14 @@ jobs:
       - restore_cache:
           key: 'core-e2e-{{ checksum "checksum.txt" }}-3-1'
       - run:
+          name: Debug cache
+          command: |
+            pwd
+            ls dist/e2enet/node0/node_modules 
+            ls dist/e2enet/node1/node_modules 
+            ls dist/e2enet/node2/node_modules 
+            ls dist/e2enet/node3/node_modules 
+      - run:
           name: Make scripts executable
           command: 'sudo chmod +x dist/e2enet/docker*'
       - run:
@@ -79,13 +87,6 @@ jobs:
       #- run:
        #   name: Run tests
        #   command: sudo bin/e2e run-tests -n e2enet -s scenario1
-      - run:
-          name: Debug cache
-          command: |
-            ls dist/e2enet/node0/node_modules 
-            ls dist/e2enet/node1/node_modules 
-            ls dist/e2enet/node2/node_modules 
-            ls dist/e2enet/node3/node_modules 
       - save_cache:
           when: always
           key: 'core-e2e-{{ checksum "checksum.txt" }}-0-0'

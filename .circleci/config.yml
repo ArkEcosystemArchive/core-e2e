@@ -62,9 +62,12 @@ jobs:
       - run:
           name: Docker init and start
           command: 'cd dist/e2enet && ./docker-init.sh && ./docker-start.sh && cd ../..'
+      #- run:
+       #   name: Run tests
+        #  command: sudo bin/e2e run-tests -n e2enet -s scenario1
       - run:
-          name: Run tests
-          command: sudo bin/e2e run-tests -n e2enet -s scenario1
+          name: Debug cache
+          command: cat checksum.txt 
       - save_cache:
           when: always
           key: 'core-e2e-{{ checksum "checksum.txt" }}-1'

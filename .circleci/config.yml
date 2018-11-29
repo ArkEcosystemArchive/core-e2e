@@ -55,7 +55,7 @@ jobs:
             find ./dist/e2enet/node0/packages/ -name package.json -print0 | sort -z | xargs -r0
             echo ./dist/e2enet/node0/package.json | xargs md5sum | md5sum - > checksum.txt
       - restore_cache:
-          key: 'core-e2e-{{ checksum "checksum.txt" }}-1'
+          key: 'core-e2e-{{ checksum "checksum.txt" }}-0'
       - run:
           name: Make scripts executable
           command: 'sudo chmod +x dist/e2enet/docker*'
@@ -70,7 +70,7 @@ jobs:
           command: cat checksum.txt 
       - save_cache:
           when: always
-          key: 'core-e2e-{{ checksum "checksum.txt" }}-1'
+          key: 'core-e2e-{{ checksum "checksum.txt" }}-0'
           paths:
             - ./dist/e2enet/node0/packages/core/node_modules
             - ./dist/e2enet/node0/packages/core-api/node_modules

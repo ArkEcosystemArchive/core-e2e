@@ -18,9 +18,8 @@ describe('Check confirmed and unconfirmed transactions', () => {
     const transactions = response.data.data
 
     const txToB = transactions.filter(transaction => transaction.recipient === utils.b.address)
-    const txToC = transactions.filter(transaction => transaction.recipient === utils.c.address)
     
     expect(txToB.length).toBe(1) // 1st transaction was forged
-    expect(txToC.length).toBe(1) // 2nd transaction was forged
+    expect(transactions.length).toBe(1) // 2nd transaction was not forged
   })
 })

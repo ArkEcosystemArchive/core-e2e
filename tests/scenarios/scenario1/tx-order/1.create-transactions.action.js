@@ -43,5 +43,5 @@ module.exports = async (options) => {
       .getStruct()
 
     await testUtils.POST('transactions', { transactions: [transaction1, transaction2] }, 1) // to node 1
-    await testUtils.POST('transactions', { transactions: [transaction2] }) // just transaction2 to other nodes
+    //await testUtils.POST('transactions', { transactions: [transaction2] }) // just transaction2 to other nodes
 }

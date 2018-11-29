@@ -10,10 +10,8 @@ describe('Check unconfirmed transactions', () => {
     const transactions = response.data.data
 
     const txToB = transactions.filter(transaction => transaction.recipient === utils.b.address)
-    const txToC = transactions.filter(transaction => transaction.recipient === utils.c.address)
     
-    expect(transactions.length).toBe(2)
+    expect(transactions.length).toBe(1)
     expect(txToB.length).toBe(1)
-    expect(txToC.length).toBe(1)
   })
 })

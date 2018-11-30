@@ -8,16 +8,11 @@ const util = require('util')
 const exec = util.promisify(require('child_process').exec)
 
 /**
- * Disconnect node1 + Create A => B and B => C transactions
+ * Send A => B and B => C transactions
  * @param  {Object} options = { }
  * @return {void}
  */
 module.exports = async (options) => {
-    // disconnect node1
-    const commandDisconnectNode = `docker network disconnect nodes $(docker ps --format "{{.Names}}" | grep node1_ark)`
-    const { stdout: stdoutDisconnect, stderr: stderrDisconnect } = await exec(commandDisconnectNode)
-    console.log(`[pool-clear] disconnect node : ${JSON.stringify({stdoutDisconnect, stderrDisconnect})}`)
-
     // A => B and B => C transactions
     const config = require('../../../networks/e2enet/e2enet.json')
     client.setConfig(config)
@@ -43,5 +38,4 @@ module.exports = async (options) => {
       .getStruct()
 
     await testUtils.POST('transactions', { transactions: [transaction1, transaction2] }, 1) // to node 1
-    await testUtils.POST('transactions', { transactions: [transaction2] }) // just transaction2 to other nodes
 }

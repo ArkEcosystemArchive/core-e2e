@@ -3,6 +3,6 @@
 module.exports = {
     network: 'e2enet',
     enabledTests: [
-        'pool-restart'
+        'tx-order'
     ]
 }

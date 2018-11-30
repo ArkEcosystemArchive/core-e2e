@@ -22,7 +22,7 @@ module.exports = {
             10: [ '2.check-unconfirmed.test' ],
             12: [ '3.stop-node.action' ],
             14: [ '4.restart-node.action'],
-            24: [ '5.check-forged.test' ]
+            34: [ '5.check-forged.test' ]
         }
     }
 }

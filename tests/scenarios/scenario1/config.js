@@ -3,6 +3,8 @@
 module.exports = {
     network: 'e2enet',
     enabledTests: [
-        'chained-tx'
+        'chained-tx',
+        'doublespend1',
+        'pool-restart'
     ]
 }

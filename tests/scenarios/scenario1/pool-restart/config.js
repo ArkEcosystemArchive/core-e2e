@@ -19,12 +19,12 @@ Workflow :
 module.exports = {
     events: {
         newBlock: {
-            10: [ '0.transfer-new-wallet.action' ],
-            14: [ '1.create-transactions.action' ],
-            15: [ '2.check-unconfirmed.test' ],
-            16: [ '3.stop-node.action' ],
-            18: [ '4.0.restart-node.action', '4.1.check-tx-1.test' ],
-            26: [ '5.check-node-pool.test' ]
+            5: [ '0.transfer-new-wallet.action' ],
+            21: [ '1.create-transactions.action' ],
+            22: [ '2.check-unconfirmed.test' ],
+            23: [ '3.stop-node.action' ],
+            25: [ '4.0.restart-node.action', '4.1.check-tx-1.test' ],
+            40: [ '5.check-node-pool.test' ]
         }
     }
 }

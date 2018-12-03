@@ -17,8 +17,8 @@ Workflow :
 module.exports = {
     events: {
         newBlock: {
-            4: [ '0.transfer-new-wallet.action' ],
-            6: [ '1.create-transactions.action' ],
+            5: [ '0.transfer-new-wallet.action' ],
+            7: [ '1.create-transactions.action' ],
             9: [ '2.check-AtoB-forged.test' ],
             10: [ '3.resend-BtoC.action' ],
             14: [ '4.check-BtoC-forged.test']

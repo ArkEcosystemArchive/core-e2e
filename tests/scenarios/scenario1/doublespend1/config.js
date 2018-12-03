@@ -3,9 +3,9 @@
 module.exports = {
     events: {
         newBlock: {
-            8: [ '0.transfer-new-wallet.action' ],
-            11: [ '1.doublespend.action' ],
-            14: [ '2.check-tx.test' ]
+            5: [ '0.transfer-new-wallet.action' ],
+            16: [ '1.doublespend.action' ],
+            19: [ '2.check-tx.test' ]
         }
     }
 }

@@ -19,6 +19,7 @@ module.exports = async (options) => {
       .amount(600 * Math.pow(10, 8))
       .recipientId(utils.doubleSpendRecipient.address)
       .vendorField('first part of double spend')
+      .fee(0.1 * Math.pow(10, 8))
       .sign(utils.doubleSpendSender.passphrase)
       .getStruct()
 
@@ -27,6 +28,7 @@ module.exports = async (options) => {
       .amount(600 * Math.pow(10, 8))
       .recipientId(utils.doubleSpendRecipient.address)
       .vendorField('second part of double spend')
+      .fee(0.1 * Math.pow(10, 8))
       .sign(utils.doubleSpendSender.passphrase)
       .getStruct()
 

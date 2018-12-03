@@ -12,7 +12,7 @@ describe('Check confirmed and unconfirmed transactions', () => {
     expect(transactions.length).toBe(0) // transaction was removed from pool
   })
 
-  it('should have only 1st transaction forged', async () => {
+  it('should have our 1st and 2nd transaction forged', async () => {
     const response = await testUtils.GET('transactions')
     testUtils.expectSuccessful(response)
     const transactions = response.data.data
@@ -21,6 +21,6 @@ describe('Check confirmed and unconfirmed transactions', () => {
     const txToRandomRecipient2 = transactions.filter(transaction => transaction.recipient === utils.randomRecipient2.address)
     
     expect(txToRandomRecipient.length).toBe(1) // 1st transaction was forged
-    expect(txToRandomRecipient2.length).toBe(0) // 2nd transaction was not forged
+    expect(txToRandomRecipient2.length).toBe(1) // 2nd transaction was forged
   })
 })

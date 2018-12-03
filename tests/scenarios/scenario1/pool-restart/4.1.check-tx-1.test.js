@@ -17,13 +17,13 @@ describe('Check forged transactions', () => {
     expect(txToRandomRecipient2.length).toBe(0) // 2nd transaction was not forged
   })
 
-  it('should have no unconfirmed tx on node1 restart', async () => {
+  it('should have the 2nd transaction still unconfirmed on node1 restart', async () => {
     const response = await retryUnconfirmedAPI(10)
     
     testUtils.expectSuccessful(response)
     const transactions = response.data.data
 
-    expect(transactions.length).toBe(0)
+    expect(transactions.length).toBe(1)
     expect(transactions[0].recipient).toBe(utils.randomRecipient2.address)
 
     async function retryUnconfirmedAPI(retryCount) {

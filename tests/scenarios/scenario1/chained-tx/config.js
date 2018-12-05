@@ -11,7 +11,7 @@ Workflow :
 - step 1 : we send A => B and B => C to node 1
 - step 2 : we check if A => B have been forged and not B => C
 - step 3 : we send again B => C to node 1
-- step 5 : we check if A => B and B => C have been forged
+- step 4 : we check if A => B and B => C have been forged
 */
 
 module.exports = {

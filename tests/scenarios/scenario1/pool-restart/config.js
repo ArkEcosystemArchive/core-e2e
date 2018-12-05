@@ -24,7 +24,7 @@ module.exports = {
             23: [ '2.check-unconfirmed.test' ],
             25: [ '3.stop-node.action' ],
             28: [ '4.0.restart-node.action', '4.1.check-tx-1.test' ],
-            40: [ '5.check-node-pool.test' ]
+            50: [ '5.check-node-pool.test' ]
         }
     }
 }

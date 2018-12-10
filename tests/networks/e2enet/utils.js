@@ -15,6 +15,7 @@ const genesisTransactions = genesisBlock.transactions
 const delegates = secrets.map(secret => {
   const publicKey = crypto.getKeys(secret).publicKey;
   const address = crypto.getAddress(publicKey);
+  console.log(JSON.stringify(genesisTransactions, null, 2))
   const balance = genesisTransactions.find(
     transaction => transaction.recipientId === address && transaction.type === 0
   ).amount;

@@ -16,13 +16,13 @@ module.exports = async (options) => {
     const transactions = [
       transactionBuilder
         .delegateRegistration()
-        .usernameAsset("dummy-delegate1")
+        .usernameAsset("dummydelegate1")
         .fee(25 * Math.pow(10, 8))
         .sign(utils.doubleDelRegSender.passphrase)
         .getStruct(),
       transactionBuilder
         .delegateRegistration()
-        .usernameAsset("dummy-delegate2")
+        .usernameAsset("dummydelegate2")
         .fee(25 * Math.pow(10, 8))
         .sign(utils.doubleDelRegSender.passphrase)
         .getStruct()

@@ -18,11 +18,13 @@ module.exports = async (options) => {
       transactionBuilder
         .secondSignature()
         .signatureAsset(utils.double2ndsigRegSender2.passphrase)
+        .fee(5 * Math.pow(10, 8))
         .sign(utils.double2ndsigRegSender.passphrase)
         .getStruct(),
       transactionBuilder
         .secondSignature()
         .signatureAsset(utils.double2ndsigRegSender3.passphrase)
+        .fee(5 * Math.pow(10, 8))
         .sign(utils.double2ndsigRegSender.passphrase)
         .getStruct()
     ]

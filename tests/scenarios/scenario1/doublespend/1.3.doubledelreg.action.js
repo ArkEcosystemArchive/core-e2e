@@ -17,11 +17,13 @@ module.exports = async (options) => {
       transactionBuilder
         .delegateRegistration()
         .usernameAsset("dummy-delegate1")
+        .fee(25 * Math.pow(10, 8))
         .sign(utils.doubleDelRegSender.passphrase)
         .getStruct(),
       transactionBuilder
         .delegateRegistration()
         .usernameAsset("dummy-delegate2")
+        .fee(25 * Math.pow(10, 8))
         .sign(utils.doubleDelRegSender.passphrase)
         .getStruct()
     ]

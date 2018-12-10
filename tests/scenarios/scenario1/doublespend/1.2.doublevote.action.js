@@ -18,11 +18,13 @@ module.exports = async (options) => {
       transactionBuilder
         .vote()
         .votesAsset([`+${networkUtils.delegates[2].publicKey}`])
+        .fee(1 * Math.pow(10, 8))
         .sign(utils.doubleVoteSender.passphrase)
         .getStruct(),
       transactionBuilder
         .vote()
         .votesAsset([`+${networkUtils.delegates[3].publicKey}`])
+        .fee(1 * Math.pow(10, 8))
         .sign(utils.doubleVoteSender.passphrase)
         .getStruct()
     ]

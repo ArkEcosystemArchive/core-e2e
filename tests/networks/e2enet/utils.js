@@ -9,7 +9,8 @@ const config = require('./e2enet.json')
 client.setConfig(config)
 
 const { secrets } = require('./delegates.json')
-const { transactions: genesisTransactions } = require('./genesisBlock.json')
+const genesisBlock = require('./genesisBlock.json')
+const genesisTransactions = genesisBlock.transactions
 
 const delegates = secrets.map(secret => {
   const publicKey = crypto.getKeys(secret).publicKey;

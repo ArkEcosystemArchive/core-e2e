@@ -19,7 +19,7 @@ module.exports = async (options) => {
         .transfer()
         .amount(1000 * Math.pow(10, 8))
         .recipientId(utils.transferSender.address)
-        .vendorField('send coins for spend with insufficient balance - transfer')
+        .vendorField('init for transfer')
         .fee(0.1 * Math.pow(10, 8))
         .sign(networkUtils.genesisWallet.passphrase)
         .getStruct(),
@@ -27,7 +27,7 @@ module.exports = async (options) => {
         .transfer()
         .amount(1000 * Math.pow(10, 8))
         .recipientId(utils.transfer2ndsigSender.address)
-        .vendorField('send coins for spend with insufficient balance - transfer with 2nd sig')
+        .vendorField('init for transfer with 2nd sig')
         .fee(0.1 * Math.pow(10, 8))
         .sign(networkUtils.genesisWallet.passphrase)
         .getStruct(),
@@ -35,7 +35,7 @@ module.exports = async (options) => {
         .transfer()
         .amount(0.5 * Math.pow(10, 8))
         .recipientId(utils.voteSender.address)
-        .vendorField('send coins for spend with insufficient balance - vote')
+        .vendorField('init for vote')
         .fee(0.1 * Math.pow(10, 8))
         .sign(networkUtils.genesisWallet.passphrase)
         .getStruct(),
@@ -43,7 +43,7 @@ module.exports = async (options) => {
         .transfer()
         .amount(15 * Math.pow(10, 8))
         .recipientId(utils.delRegSender.address)
-        .vendorField('send coins for spend with insufficient balance - delegate registration')
+        .vendorField('init for delegate registration')
         .fee(0.1 * Math.pow(10, 8))
         .sign(networkUtils.genesisWallet.passphrase)
         .getStruct(),
@@ -51,7 +51,7 @@ module.exports = async (options) => {
         .transfer()
         .amount(3 * Math.pow(10, 8))
         .recipientId(utils.secondsigRegSender.address)
-        .vendorField('send coins for spend with insufficient balance - 2nd signature registration')
+        .vendorField('init for 2nd signature registration')
         .fee(0.1 * Math.pow(10, 8))
         .sign(networkUtils.genesisWallet.passphrase)
         .getStruct(),

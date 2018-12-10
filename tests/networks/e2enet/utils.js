@@ -1,4 +1,4 @@
-import { client, crypto } from "@arkecosystem/crypto";
+const { client, crypto } = require('@arkecosystem/crypto')
 
 /**
  * Get the e2e genesis delegates information

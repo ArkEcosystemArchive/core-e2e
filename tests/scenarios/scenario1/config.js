@@ -5,6 +5,7 @@ module.exports = {
     enabledTests: [
         'chained-tx',
         'doublespend',
+        'insufficient-balance',
         'pool-restart'
     ]
 }

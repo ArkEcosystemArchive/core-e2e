@@ -18,40 +18,40 @@ module.exports = async (options) => {
       transactionBuilder
         .transfer()
         .amount(1000 * Math.pow(10, 8))
-        .recipientId(utils.doubleTransferSender.address)
-        .vendorField('send coins for double spend - transfer')
+        .recipientId(utils.transferSender.address)
+        .vendorField('init for transfer')
         .fee(0.1 * Math.pow(10, 8))
         .sign(networkUtils.genesisWallet.passphrase)
         .getStruct(),
       transactionBuilder
         .transfer()
         .amount(1000 * Math.pow(10, 8))
-        .recipientId(utils.doubleTransfer2ndsigSender.address)
-        .vendorField('send coins for double spend - transfer with 2nd sig')
+        .recipientId(utils.transfer2ndsigSender.address)
+        .vendorField('init for transfer with 2nd sig')
         .fee(0.1 * Math.pow(10, 8))
         .sign(networkUtils.genesisWallet.passphrase)
         .getStruct(),
       transactionBuilder
         .transfer()
-        .amount(1.5 * Math.pow(10, 8))
-        .recipientId(utils.doubleVoteSender.address)
-        .vendorField('send coins for double spend - vote')
+        .amount(0.5 * Math.pow(10, 8))
+        .recipientId(utils.voteSender.address)
+        .vendorField('init for vote')
         .fee(0.1 * Math.pow(10, 8))
         .sign(networkUtils.genesisWallet.passphrase)
         .getStruct(),
       transactionBuilder
         .transfer()
-        .amount(35 * Math.pow(10, 8))
-        .recipientId(utils.doubleDelRegSender.address)
-        .vendorField('send coins for double spend - delegate registration')
+        .amount(15 * Math.pow(10, 8))
+        .recipientId(utils.delRegSender.address)
+        .vendorField('init for delegate registration')
         .fee(0.1 * Math.pow(10, 8))
         .sign(networkUtils.genesisWallet.passphrase)
         .getStruct(),
       transactionBuilder
         .transfer()
-        .amount(7 * Math.pow(10, 8))
-        .recipientId(utils.double2ndsigRegSender.address)
-        .vendorField('send coins for double spend - 2nd signature registration')
+        .amount(3 * Math.pow(10, 8))
+        .recipientId(utils.secondsigRegSender.address)
+        .vendorField('init for 2nd signature registration')
         .fee(0.1 * Math.pow(10, 8))
         .sign(networkUtils.genesisWallet.passphrase)
         .getStruct(),

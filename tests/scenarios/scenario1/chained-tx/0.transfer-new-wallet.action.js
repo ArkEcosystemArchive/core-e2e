@@ -1,6 +1,5 @@
 'use strict'
 
-const axios = require('axios')
 const { client, transactionBuilder } = require('@arkecosystem/crypto')
 const utils = require('./utils')
 const networkUtils = require('../../../networks/e2enet/utils')
@@ -18,8 +17,8 @@ module.exports = async (options) => {
     let transaction1 = transactionBuilder
       .transfer()
       .amount(1000 * Math.pow(10, 8))
-      .recipientId(utils.doubleSpendSender.address)
-      .vendorField('send coins to double spend sender')
+      .recipientId(utils.a.address)
+      .vendorField('send coins to wallet A')
       .fee(0.1 * Math.pow(10, 8))
       .sign(networkUtils.genesisWallet.passphrase)
       .getStruct()

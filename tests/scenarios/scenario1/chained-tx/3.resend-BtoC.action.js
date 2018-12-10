@@ -1,30 +1,31 @@
 'use strict'
 
-const axios = require('axios')
 const { client, transactionBuilder } = require('@arkecosystem/crypto')
 const utils = require('./utils')
-const networkUtils = require('../../../networks/e2enet/utils')
 const testUtils = require('../../../../lib/utils/test-utils')
 
+const util = require('util')
+const exec = util.promisify(require('child_process').exec)
+
 /**
- * Creates a transaction to a new wallet
+ * Re-send B => C transaction
  * @param  {Object} options = { }
  * @return {void}
  */
 module.exports = async (options) => {
+    // B => C transaction
     const config = require('../../../networks/e2enet/e2enet.json')
     client.setConfig(config)
 
-    let transaction1 = transactionBuilder
+    // B => C
+    let transaction2 = transactionBuilder
       .transfer()
-      .amount(1000 * Math.pow(10, 8))
-      .recipientId(utils.senderWallet.address)
-      .vendorField('send coins to new wallet')
+      .amount(250 * Math.pow(10, 8))
+      .recipientId(utils.c.address)
+      .vendorField('transfer B => C')
       .fee(0.1 * Math.pow(10, 8))
-      .sign(networkUtils.genesisWallet.passphrase)
+      .sign(utils.b.passphrase)
       .getStruct()
 
-    await testUtils.POST('transactions', {
-      transactions: [transaction1]
-    })
+    await testUtils.POST('transactions', { transactions: [transaction2] }, 1) // to node 1
 }

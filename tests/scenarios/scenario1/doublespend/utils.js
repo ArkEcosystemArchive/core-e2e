@@ -36,7 +36,7 @@ module.exports = {
       address: "MGtAYkrQZUaZ3WkHvC7H7fX6FWjKVgvKsh"
     },
     double2ndsigRegSender3: {
-      "passphrase": "warrior piano option during post afford speed cat release gorilla lens grief",
-      "address": "MGgQF6LoC1sJWxjnRVPm9fKePK6XvA8Tqf"
+      passphrase: "warrior piano option during post afford speed cat release gorilla lens grief",
+      address: "MGgQF6LoC1sJWxjnRVPm9fKePK6XvA8Tqf"
     }
 }

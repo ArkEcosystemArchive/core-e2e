@@ -8,7 +8,7 @@ const { client, crypto } = require('@arkecosystem/crypto')
 const config = require('./e2enet.json')
 client.setConfig(config)
 
-const secrets = require('./delegates.json')
+const { secrets } = require('./delegates.json')
 const { transactions: genesisTransactions } = require('./genesisBlock.json')
 
 const delegates = secrets.map(secret => {

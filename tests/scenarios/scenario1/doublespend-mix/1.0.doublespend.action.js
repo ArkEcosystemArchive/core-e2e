@@ -53,7 +53,7 @@ module.exports = async (options) => {
         case 'delegateRegistration':
           transaction = transactionBuilder
             .delegateRegistration()
-            .usernameAsset(wallets[0].address.slice(0,10))
+            .usernameAsset(wallets[0].address.slice(0,10).toLowerCase())
           break;
       }
       

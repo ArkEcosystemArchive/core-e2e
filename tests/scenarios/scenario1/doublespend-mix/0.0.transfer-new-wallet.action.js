@@ -21,14 +21,23 @@ module.exports = async (options) => {
       Object.keys(secondTxsTypes).forEach(secondTxType => {
         const wallets = secondTxsTypes[secondTxType]
         const transferAmount = _balanceNeededFromTxMix(firstTxType, secondTxType)
-        transactions.push(transactionBuilder
-          .transfer()
-          .amount(transferAmount)
-          .recipientId(wallets[0].address)
-          .vendorField(`init double spend ${firstTxType} - ${secondTxType}`)
-          .fee(0.1 * Math.pow(10, 8))
-          .sign(networkUtils.genesisWallet.passphrase)
-          .getStruct()
+        transactions.push(
+          transactionBuilder
+            .transfer()
+            .amount(transferAmount)
+            .recipientId(wallets[0].address)
+            .vendorField(`init double spend ${firstTxType} - ${secondTxType}`)
+            .fee(0.1 * Math.pow(10, 8))
+            .sign(networkUtils.genesisWallet.passphrase)
+            .getStruct(),
+          transactionBuilder
+            .transfer()
+            .amount(5 * Math.pow(10, 8) + transferAmount) // add 5 for 2nd sign registration fee
+            .recipientId(wallets[2].address)
+            .vendorField(`init double spend ${firstTxType} - ${secondTxType}`)
+            .fee(0.1 * Math.pow(10, 8))
+            .sign(networkUtils.genesisWallet.passphrase)
+            .getStruct()
         )
       })
     })

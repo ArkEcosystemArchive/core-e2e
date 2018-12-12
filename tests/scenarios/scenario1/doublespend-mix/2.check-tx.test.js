@@ -8,8 +8,6 @@ describe('Check that only 1 transaction out of the 2 was accepted', () => {
     const response = await testUtils.GET('transactions')
     testUtils.expectSuccessful(response)
     
-    const expected = {}
-    const received = {}
     Object.keys(utils.walletsMix).forEach((firstTxType) => {
       const secondTxsTypes = utils.walletsMix[firstTxType]
       
@@ -17,8 +15,10 @@ describe('Check that only 1 transaction out of the 2 was accepted', () => {
         const wallets = secondTxsTypes[secondTxType]
         
         const txSent = response.data.data.filter(tx => tx.sender === wallets[0].address)
+        const txSent2ndSign = response.data.data.filter(tx => tx.sender === wallets[2].address)
 
         expect(txSent.length).toBe(1)
+        expect(txSent2ndSign.length).toBe(1)
       })
     })
 

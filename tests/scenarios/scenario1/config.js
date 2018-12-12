@@ -7,6 +7,7 @@ module.exports = {
         'doublespend',
         'doublespend-mix',
         'insufficient-balance',
-        'pool-restart'
+        //'pool-restart',
+        'transactions-valid'
     ]
 }

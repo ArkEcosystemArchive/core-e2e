@@ -18,10 +18,10 @@ describe('Check that only 1 transaction out of the 2 was accepted', () => {
         
         const txSent = response.data.data.filter(tx => tx.sender === wallets[0].address)
         expected[`${firstTxType}-${secondTxType}`] = 1
-        received[`${firstTxType}-${secondTxType}`] = txSent.length
+        received[`${firstTxType}-${secondTxType}`] = wallets[0].address //txSent.length
       })
     })
 
-    expect(received).toEqual(expected)
+    expect(received).toEqual(response.data.data)
   })
 })

@@ -12,6 +12,7 @@ describe('Check that only 1 transaction out of the 2 was accepted', () => {
       const secondTxsTypes = utils.walletsMix[firstTxType]
       
       Object.keys(secondTxsTypes).forEach(secondTxType => {
+        console.log(`test ${firstTxType} - ${secondTxType}`)
         const wallets = secondTxsTypes[secondTxType]
         
         const txSent = response.data.data.filter(tx => tx.sender === wallets[0].address)

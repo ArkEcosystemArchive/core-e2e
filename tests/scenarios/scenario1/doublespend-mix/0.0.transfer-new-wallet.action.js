@@ -32,7 +32,7 @@ module.exports = async (options) => {
             .getStruct(),
           transactionBuilder
             .transfer()
-            .amount(5 * Math.pow(10, 8) + transferAmount) // add 5 for 2nd sign registration fee
+            .amount(utils.fees.secondSignRegistration + transferAmount)
             .recipientId(wallets[2].address)
             .vendorField(`init double spend ${firstTxType} - ${secondTxType}`)
             .fee(0.1 * Math.pow(10, 8))

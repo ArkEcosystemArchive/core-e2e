@@ -22,7 +22,7 @@ module.exports = async (options) => {
         transactions.push(transactionBuilder
           .secondSignature()
           .signatureAsset(wallets[3].passphrase)
-          .fee(5 * Math.pow(10, 8))
+          .fee(utils.fees.secondSignRegistration)
           .sign(wallets[2].passphrase)
           .getStruct()
         )

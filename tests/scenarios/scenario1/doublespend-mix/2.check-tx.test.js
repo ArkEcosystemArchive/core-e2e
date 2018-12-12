@@ -22,6 +22,6 @@ describe('Check that only 1 transaction out of the 2 was accepted', () => {
       })
     })
 
-    expect(received).toEqual(response.data.data)
+    expect(received).toEqual(JSON.stringify(response.data.data, null, 2))
   })
 })

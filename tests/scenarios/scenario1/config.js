@@ -3,10 +3,10 @@
 module.exports = {
     network: 'e2enet',
     enabledTests: [
-        //'chained-tx',
-        //'doublespend',
+        'chained-tx',
+        'doublespend',
         'doublespend-mix',
-        //'insufficient-balance',
-        //'pool-restart'
+        'insufficient-balance',
+        'pool-restart'
     ]
 }

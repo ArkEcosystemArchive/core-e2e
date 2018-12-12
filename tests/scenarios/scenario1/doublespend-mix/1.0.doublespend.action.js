@@ -59,7 +59,7 @@ module.exports = async (options) => {
       
       return transaction
         .fee(utils.fees[type])
-        .sign(wallets[0].address)
+        .sign(wallets[0].passphrase)
         .getStruct()
     }
 }

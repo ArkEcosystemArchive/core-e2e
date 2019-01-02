@@ -5,7 +5,7 @@ const { client, crypto } = require('@arkecosystem/crypto')
  * @return {Array} array of objects like { secret, publicKey, address, balance }
  */
 
-const config = require('./e2enet.json')
+const config = require('./crypto/e2enet/network.json')
 client.setConfig(config)
 
 const { secrets } = require('./delegates.json')

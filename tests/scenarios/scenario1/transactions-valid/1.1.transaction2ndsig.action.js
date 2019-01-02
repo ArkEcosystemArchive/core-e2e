@@ -11,7 +11,7 @@ const networkUtils = require('../../../networks/e2enet/utils')
  * @return {void}
  */
 module.exports = async (options) => {
-    const config = require('../../../networks/e2enet/e2enet.json')
+    const config = require('../../../networks/e2enet/crypto/e2enet/network.json')
     client.setConfig(config)
 
     const transactions = []

@@ -14,7 +14,7 @@ const exec = util.promisify(require('child_process').exec)
  */
 module.exports = async (options) => {
     // B => C transaction
-    const config = require('../../../networks/e2enet/e2enet.json')
+    const config = require('../../../networks/e2enet/crypto/e2enet/network.json')
     client.setConfig(config)
 
     // B => C

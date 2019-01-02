@@ -13,7 +13,7 @@ const exec = util.promisify(require('child_process').exec)
  * @return {void}
  */
 module.exports = async (options) => {
-    const config = require('../../../networks/e2enet/e2enet.json')
+    const config = require('../../../networks/e2enet/crypto/e2enet/network.json')
     client.setConfig(config)
 
     // first transaction which will be broadcasted to other nodes for forging

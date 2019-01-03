@@ -3,6 +3,7 @@
 const { client, transactionBuilder } = require('@arkecosystem/crypto')
 const utils = require('./utils')
 const testUtils = require('../../../../lib/utils/test-utils')
+const networkUtils = require('../../../networks/e2enet/utils')
 
 const util = require('util')
 const exec = util.promisify(require('child_process').exec)
@@ -13,7 +14,7 @@ const exec = util.promisify(require('child_process').exec)
  * @return {void}
  */
 module.exports = async (options) => {
-    const config = require('../../../networks/e2enet/crypto/e2enet/network.json')
+    const config = networkUtils.e2enet
     client.setConfig(config)
 
     // first transaction which will be broadcasted to other nodes for forging

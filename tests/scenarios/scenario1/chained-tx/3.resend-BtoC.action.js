@@ -3,6 +3,7 @@
 const { client, transactionBuilder } = require('@arkecosystem/crypto')
 const utils = require('./utils')
 const testUtils = require('../../../../lib/utils/test-utils')
+const networkUtils = require('../../../networks/e2enet/utils')
 
 const util = require('util')
 const exec = util.promisify(require('child_process').exec)
@@ -14,7 +15,7 @@ const exec = util.promisify(require('child_process').exec)
  */
 module.exports = async (options) => {
     // B => C transaction
-    const config = require('../../../networks/e2enet/crypto/e2enet/network.json')
+    const config = networkUtils.e2enet
     client.setConfig(config)
 
     // B => C

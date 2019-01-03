@@ -3,6 +3,7 @@
 const { client, transactionBuilder } = require('@arkecosystem/crypto')
 const utils = require('./utils')
 const testUtils = require('../../../../lib/utils/test-utils')
+const networkUtils = require('../../../networks/e2enet/utils')
 
 /**
  * 2nd signature registration for double spend with 2nd signature
@@ -10,7 +11,7 @@ const testUtils = require('../../../../lib/utils/test-utils')
  * @return {void}
  */
 module.exports = async (options) => {
-    const config = require('../../../networks/e2enet/crypto/e2enet/network.json')
+    const config = networkUtils.e2enet
     client.setConfig(config)
 
     const transactions = [

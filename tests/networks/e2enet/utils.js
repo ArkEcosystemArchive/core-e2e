@@ -1,10 +1,6 @@
 const { client, crypto } = require('@arkecosystem/crypto')
 
-const e2enet = {
-  network: require('./crypto/e2enet/network.json'),
-  exceptions: require('./crypto/e2enet/exceptions.json'),
-  milestones:require('./crypto/e2enet/milestones.json')
-}
+const e2enet = require('./e2enet.json')
 
 /**
  * Get the e2e genesis delegates information
